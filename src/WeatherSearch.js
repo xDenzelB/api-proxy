@@ -11,11 +11,11 @@ export default function WeatherSearch() {
       
     try {
       setLoading(true);
-      const response = await fetch(`/.netlify/functions/yelp?search=${search}`);
+      const response = await fetch(`/.netlify/functions/weather?search=${search}`);
 
       const json = await response.json();
 
-      setBusiness(json.businesses);
+      setWeather(json.businesses);
       setLoading(false);
     } catch (e) {
       console.log('=============================\n');
@@ -32,7 +32,7 @@ export default function WeatherSearch() {
   return (
     <section className='weather'>
       {/* make the fetch on submit */}
-      <form>
+      <form onSubmit={handleWeatherSubmit}>
             Search weather for a city
         {/* add inputs/labels for city name, state, and country, using all the things we need with react forms. Don't forget to use the value property to sync these up with the default values in react state */}
         <button>Get weather</button>
