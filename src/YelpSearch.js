@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useState } from 'react';
 import YelpList from './YelpList';
 import Loading from './load.gif';
@@ -20,7 +21,9 @@ export default function YelpSearch() {
       setBusiness(json.businesses);
       setLoading(false);
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log('=============================\n');
+      // eslint-disable-next-line no-console
       console.log('|| e', e);
       console.log('\n=============================');
       console.error(e);
