@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 require('dotenv').config();
 
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   try {
     const name = event.queryStringParameters.search;
 
