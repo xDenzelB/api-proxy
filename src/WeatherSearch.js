@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import WeatherList from './WeatherList';
+import Loading from './load.gif';
 
 export default function WeatherSearch() {
   const [weather, setWeather] = useState([]);
@@ -51,6 +53,12 @@ export default function WeatherSearch() {
         {/* add inputs/labels for city name, state, and country, using all the things we need with react forms. Don't forget to use the value property to sync these up with the default values in react state */}
         <button>Get weather</button>
       </form>
+      <div>
+        {
+          loading ? <img src={Loading} />
+            : <WeatherList weather={weather} />
+        }
+      </div>
       {/* Make a ForecastList component to import and use here. Use a ternery to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
     </section>
   );

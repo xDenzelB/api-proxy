@@ -9,9 +9,12 @@ exports.handler = async (event) => {
 
     const geoLocationResponse = await fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit={limit}&appid=${process.env.WEATHER_KEY}`); 
 
-    const [{ lat, lon }] = await geoLocationResponse.json();
+    const geoCodingJson = await geoLocationResponse.json();
 
-    const response = await fetch (`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=${process.env.WEATHER_KEY}`);
+    const latitude = geoCodingJson[0].lat;
+    const longitude = geoCodingJson[0].lon;
+
+    const response = await fetch (`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&units=imperial&lon=${longitude}&exclude={part}&appid=${process.env.WEATHER_KEY}`);
 
     const weatherJson = await response.json();
     // grab the city, state, and country from the request's query parameters
