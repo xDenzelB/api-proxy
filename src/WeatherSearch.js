@@ -18,7 +18,7 @@ export default function WeatherSearch() {
       const response = await fetch(`/.netlify/functions/weather?city=${city}&state=${state}&country${country}`);
 
       const json = await response.json();
-
+      console.log(json);
       setWeather(json.daily);
       setLoading(false);
     } catch (e) {

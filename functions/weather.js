@@ -7,15 +7,14 @@ exports.handler = async (event) => {
 
     const { city, state, country } = event.queryStringParameters;
 
-    const geoLocationResponse = await fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit={limit}&appid=${process.env.WEATHER_KEY}`); 
+    const geoLocationResponse = await fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit=1&appid=${process.env.WEATHER_KEY}`); 
 
     const geoCodingJson = await geoLocationResponse.json();
 
     const latitude = geoCodingJson[0].lat;
     const longitude = geoCodingJson[0].lon;
 
-    const response = await fetch (`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&units=imperial&lon=${longitude}&exclude={part}&appid=${process.env.WEATHER_KEY}`);
-
+    const response = await fetch (`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&units=imperial&lon=${longitude}&appid=${process.env.WEATHER_KEY}`);
     const weatherJson = await response.json();
     // grab the city, state, and country from the request's query parameters
     // here is an example from the netlify docs:
