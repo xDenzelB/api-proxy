@@ -1,9 +1,13 @@
-const request = require('superagent');
+const fetch = require('node-fetch');
 
 require('dotenv').config();
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   try {
+
+    const name = event.queryStringParameters.search;
+
+    const response = await fetch (`https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid=${process.env.WEATHER_KEY}`)
     // grab the city, state, and country from the request's query parameters
     // here is an example from the netlify docs:
     // https://functions.netlify.com/playground/#hello%2C-%7Bname%7D 

@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 export default function WeatherSearch() {
   const [weather, setWeather] = useState([]);
-  const [search, setSearch] = useState('Portland');
+  const [city, setCity] = useState('Portland');
+  const [state, setState] = useState('or');
+  const [country, setCountry] = useState('usa');
   const [loading, setLoading] = useState(false);
       // you'll need to track your weather search results, the loading state, and a form field for location with a default value.
   
@@ -11,11 +13,11 @@ export default function WeatherSearch() {
       
     try {
       setLoading(true);
-      const response = await fetch(`/.netlify/functions/weather?search=${search}`);
+      const response = await fetch(`/.netlify/functions/weather?city=${city}&state=${state}&country${country}`);
 
       const json = await response.json();
 
-      setWeather(json.businesses);
+      setWeather(json.daily);
       setLoading(false);
     } catch (e) {
       console.log('=============================\n');
