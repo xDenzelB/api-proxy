@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useState } from 'react';
 import PokemonList from './PokemonList';
 import Loading from './load.gif';
