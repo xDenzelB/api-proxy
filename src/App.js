@@ -5,7 +5,7 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [loading, setLoading] = useState(false);
+ 
   return (
     <div className="App">
       <PokemonSearch />
