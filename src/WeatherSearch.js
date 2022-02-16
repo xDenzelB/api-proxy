@@ -1,14 +1,30 @@
 import { useState } from 'react';
 
 export default function WeatherSearch() {
+  const [weather, setWeather] = useState([]);
+  const [search, setSearch] = useState('Portland');
+  const [loading, setLoading] = useState(false);
       // you'll need to track your weather search results, the loading state, and a form field for location with a default value.
   
   async function handleWeatherSubmit(e) {
     e.preventDefault();
       
+    try {
+      setLoading(true);
+      const response = await fetch(`/.netlify/functions/yelp?search=${search}`);
+
+      const json = await response.json();
+
+      setBusiness(json.businesses);
+      setLoading(false);
+    } catch (e) {
+      console.log('=============================\n');
+      console.log('|| e', e);
+      console.log('\n=============================');
+      console.error(e);
+    }
         // set the loading state to true
-        // use fetch to make a request to your netlify weather function. Be sure to pass the location as a query param in the URL
-      
+        // use fetch to make a request to your netlify pokemon function. Be sure to pass the pokemon name as a query param in the URL
   
         // put the jsonified data in state and set the loading state to false
   }

@@ -10,6 +10,7 @@ function App() {
     <div className="App">
       <PokemonSearch />
       <YelpSearch />
+      <WeatherSearch />
       { /* stretch goal: <WeatherSearch /> */ }
     </div>
   );
